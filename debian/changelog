@@ -1,3 +1,9 @@
+bgpq3 (0.1.31-1~precise0+exo1) precise; urgency=medium
+
+  * Backport for Precise.
+
+ -- Vincent Bernat <bernat@debian.org>  Fri, 17 Nov 2017 13:46:08 +0100
+
 bgpq3 (0.1.31-1) unstable; urgency=low
 
   * Initial release (Closes: #802755)
