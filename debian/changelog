@@ -1,0 +1,5 @@
+bgpq3 (0.1.31-1) unstable; urgency=low
+
+  * Initial release (Closes: #802755)
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Fri, 23 Oct 2015 10:19:40 +0300

@@ -1,0 +1,27 @@
+Author: Apollon Oikonomopoulos <apoikos@debian.org>
+Subject: Use CPPFLAGS and drop extra CFLAGS from build
+
+Forwarded: no
+Last-Update: 2015-10-23
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -1,5 +1,5 @@
+ CC=@CC@
+-CFLAGS=@CFLAGS@ @DEFS@ -g -Wall -I. -O0
++CFLAGS=@CFLAGS@ @DEFS@ -I.
+ LDADD=@LDFLAGS@ @LIBS@
+ INSTALL=@INSTALL@
+ 
+@@ -20,10 +20,10 @@
+ all: bgpq3
+ 
+ bgpq3: ${OBJECTS}
+-	${CC} ${CFLAGS} -o bgpq3 ${OBJECTS} ${LDADD}
++	${CC} ${CFLAGS} $(CPPFLAGS) -o bgpq3 ${OBJECTS} ${LDADD}
+ 
+ .c.o: 
+-	${CC} ${CFLAGS} -c $<
++	${CC} ${CFLAGS} $(CPPFLAGS) -c $<
+ 
+ clean: 
+ 	rm -rf Makefile autom4te.cache bgpq3 config.h config.log config.status

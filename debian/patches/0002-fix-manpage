@@ -1,0 +1,125 @@
+Author: Apollon Oikonomopoulos <apoikos@debian.org>
+Description: Fix manpage errors
+ The manpage is using a couple of man macros while it's written with the mdoc
+ package. Replace .RS and .RE with .Rs and .Re respectively and format the SEE
+ ALSO section a bit better.
+
+Forwarded: no
+Last-Update: 2015-10-23
+diff --git a/bgpq3.8 b/bgpq3.8
+index 40a9823..b29ae59 100644
+--- a/bgpq3.8
++++ b/bgpq3.8
+@@ -107,7 +107,7 @@ means networks (in prefix format), autonomous systems, as-sets and route-sets.
+ .Sh EXAMPLES
+ Generating named juniper prefix-filter for AS20597: 
+ .nf
+-.RS
++.Rs
+ ~>bgpq3 -Jl eltel AS20597
+ policy-options {
+ replace:
+@@ -127,13 +127,13 @@ replace:
+     217.170.80.0/20;
+  }
+ }
+-.RE
++.Re
+ .fi
+ .Pp
+ For Cisco we can use aggregation (-A) flag to make this prefix-filter
+ more compact: 
+ .nf
+-.RS
++.Rs
+ ~>bgpq3 -Al eltel AS20597
+ no ip prefix-list eltel
+ ip prefix-list eltel permit 81.9.0.0/20
+@@ -147,7 +147,7 @@ ip prefix-list eltel permit 89.112.0.0/18 ge 19 le 19
+ ip prefix-list eltel permit 89.112.4.0/22
+ ip prefix-list eltel permit 89.112.64.0/19
+ ip prefix-list eltel permit 217.170.64.0/19 ge 20 le 20
+-.RE
++.Re
+ .fi
+ - you see, prefixes 89.112.0.0/19 and 89.112.32.0/19 now aggregated
+ into single entry 89.112.0.0/18 ge 19 le 19. 
+@@ -155,8 +155,8 @@ into single entry 89.112.0.0/18 ge 19 le 19.
+ Well, for Juniper we can generate even more interesting policy-options,
+ using -M <extra match conditions>, -R <len> and hierarchical names: 
+ .nf
+-.RS
+-./bgpq3 -AJEl eltel/specifics -r 29 -R 32 -M "community blackhole" AS20597
++.Rs
++~>bgpq3 -AJEl eltel/specifics -r 29 -R 32 -M "community blackhole" AS20597
+ policy-options {
+  policy-statement eltel {
+   term specifics {
+@@ -176,25 +176,25 @@ replace:
+   }
+  }
+ }
+-.RE
++.Re
+ .fi
+ generated policy-option term now allows all specifics with prefix-length
+ between /29 and /32 for eltel networks if they match with special community 
+-'blackhole' (defined elsewhere in configuration).
++\'blackhole' (defined elsewhere in configuration).
+ .Pp
+ Of course, this version supports IPv6 (-6): 
+ .nf
+-.RS
++.Rs
+ ~>bgpq3 -6l as-retn-6 AS-RETN6
+ no ipv6 prefix-list as-retn-6
+ ipv6 prefix-list as-retn-6 permit 2001:7fb:fe00::/48
+ ipv6 prefix-list as-retn-6 permit 2001:7fb:fe01::/48
+ [....]
+-.RE
++.Re
+ .fi
+ and support for ASN 32 is also here
+ .nf
+-.RS
++.Rs
+ ~>bgpq3 -J3f 112 AS-SPACENET
+ policy-options {
+ replace:
+@@ -205,14 +205,14 @@ replace:
+   as-path a3 "^112(.)*(35052|41720|43628|44450|196611)$";
+  }
+ }
+-.RE
++.Re
+ .fi
+ see AS196611 in the end of the list ? That's AS3.3 in 'asplain' notation. 
+ .Pp
+ For non-ASN32 capable routers you should not use switch -3, 
+ and the result will be next: 
+ .nf
+-.RS
++.Rs
+ ~>bgpq3 -f 112 AS-SPACENET
+ no ip as-path access-list NN
+ ip as-path access-list NN permit ^112(_112)*$
+@@ -221,7 +221,7 @@ ip as-path access-list NN permit ^112(_[0-9]+)*_(8878|12136|12931|15909)$
+ ip as-path access-list NN permit ^112(_[0-9]+)*_(21358|23456|23600|24151)$
+ ip as-path access-list NN permit ^112(_[0-9]+)*_(25152|31529|34127|34906)$
+ ip as-path access-list NN permit ^112(_[0-9]+)*_(35052|41720|43628|44450)$
+-.RE
++.Re
+ .fi
+ .Pp
+ AS196611 is no more in the list, however, AS23456 (transition AS)
+@@ -235,8 +235,10 @@ non-zero status.
+ .Sh SEE ALSO
+ .Sy http://www.radb.net/
+ Routing Arbiter project
++.Pp
+ .Sy http://tools.ietf.org/html/draft-michaelson-4byte-as-representation-05
+ for information on 'asdot' and 'asplain' notations. 
++.Pp
+ .Sy http://www.cisco.com/en/US/docs/ios/12_0s/release/ntes/120SNEWF.html#wp3521658
+ for information on Cisco implementation of ASN32. 
+ .Sh AUTHOR
