@@ -1,3 +1,14 @@
+bgpq3 (0.1.33-1) unstable; urgency=medium
+
+  * New upstream release
+  * Bump Standards to 3.9.8; no changes needed
+  * d/watch: point uscan to GitHub
+  * d/copyright: bump years
+  * Enable PIE and bindnow
+  * Use HTTPS in Vcs-Git URL
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Fri, 16 Dec 2016 13:07:58 +0200
+
 bgpq3 (0.1.31-1~precise0+exo1) precise; urgency=medium
 
   * Backport for Precise.
