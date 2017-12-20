@@ -1,2 +1,4 @@
 version=3
-http://snar.spb.ru/prog/bgpq3/ bgpq3-([\d.]+).tgz
+
+opts="uversionmangle=s/-(rc\d+)/~$1/" \
+  https://github.com/snar/bgpq3/releases .*/archive/v(.*).tar.gz

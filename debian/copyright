@@ -3,7 +3,7 @@ Upstream-Name: bgpq3
 Source: http://snar.spb.ru/prog/bgpq3/
 
 Files: *
-Copyright: (c) 2007-2015 Alexandre Snarskii <snar@snar.spb.ru>
+Copyright: (c) 2007-2016 Alexandre Snarskii <snar@snar.spb.ru>
 License: BSD-2-clause
 
 Files: strlcpy.c
@@ -21,7 +21,7 @@ Copyright: 1991 by the Massachusetts Institute of Technology
 License: MIT-old-NA
  
 Files: debian/*
-Copyright: 2015 Apollon Oikonomopoulos <apoikos@debian.org>
+Copyright: 2015-2016 Apollon Oikonomopoulos <apoikos@debian.org>
 License: BSD-2-clause
 
 License: BSD-2-clause
